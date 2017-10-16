@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^/', include('polls.urls')),
     url(r'^polls/', include('polls.urls')),
     url(r'^fileup/', fileup_views.upload_file,name='imageupload'),
+    url(r'^deneme/', fileup_views.get_name,name='denemename'),
     url(r'^admin/', admin.site.urls),
 	url(r'^upload/$', uploader_views.home, name='imageupload'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
