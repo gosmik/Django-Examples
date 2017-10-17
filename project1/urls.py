@@ -17,15 +17,11 @@ from django.conf.urls import url,include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from fileup import views
 from uploader import views as uploader_views
-from fileup import views as fileup_views
 
 urlpatterns = [
-    url(r'^/', include('polls.urls')),
-    url(r'^polls/', include('polls.urls')),
-    url(r'^fileup/', fileup_views.upload_file,name='imageupload'),
-    url(r'^deneme/', fileup_views.get_name,name='denemename'),
-    url(r'^admin/', admin.site.urls),
-	url(r'^upload/$', uploader_views.home, name='imageupload'),
+    url(r'^fileup/', views.upload_file,name='fileupload'),
+    url(r'^upload/$', uploader_views.home, name='imageupload'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

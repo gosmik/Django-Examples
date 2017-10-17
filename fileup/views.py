@@ -1,62 +1,67 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from django.core.urlresolvers import reverse
+
+from fileup.DataModel import ReviewModel
 from .forms import UploadFileForm
-import pprint
 import csv
-from .forms import NameForm
 import requests
 from bs4 import BeautifulSoup
-
-# Imaginary function to handle an uploaded file.
+import array
 
 def upload_file(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            print("****request******"+str(request))
-            handle_uploaded_file(request.FILES['file'],form.cleaned_data['title'])
-            return HttpResponseRedirect('/fileup/#')
+            handle_uploaded_file(request.FILES['file'],form.cleaned_data['file'].name)
+            print("*****filename***"+form.cleaned_data['file'].name)
+            return HttpResponseRedirect('/fileup/uploaded')
     else:
         form = UploadFileForm()
     return render(request, 'upload.html', {'form': form})
 
-def handle_uploaded_file(datafile,title):
-    data = []
-    with open(title+'.csv', 'wb+') as destination:
+def handle_uploaded_file(datafile,filename):
+    resultFileName = "result"+filename
+
+    with open(filename,'wb') as destination:
         for chunk in datafile.chunks():
             destination.write(chunk)
 
-    with open(title+'.csv', newline='') as csvfile:
+    with open(filename, 'r+' ,newline='') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
         for row in spamreader:
-            myurl= "https://www.amazon.com/dp/"+row[0]
-            print("Amazon url: "+myurl)
+            itemUrl= "https://www.amazon.com/dp/"+row[0]
+            print("Amazon url: "+itemUrl)
             header = {
                 'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:32.0) Gecko/20100101 Firefox/32.0',}
-            result = requests.get(myurl,headers=header)
+            result = requests.get(itemUrl,headers=header)
             print("status code :"+str(result.status_code))
             c = result.content
             soup = BeautifulSoup(c, "html.parser")
-            # samples = soup.find_all(lambda tag: tag.name == 'span')
-            samples = soup.find(id="priceblock_ourprice").string
-            print(samples)
-            # print(soup.find("span", {"id": "priceblock_ourprice"}))
+            price = soup.find(id="priceblock_ourprice").string
+            print(price,price)
+            ProductUrl = itemUrl
 
-def get_name(request):
-    # if this is a POST request we need to process the form data
-    if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
-        form = NameForm(request.POST)
-        # check whether it's valid:
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-            return HttpResponseRedirect('/thanks/')
+            insReviewModel = ReviewModel()
 
-    # if a GET (or any other method) we'll create a blank form
-    else:
-        form = NameForm()
+            Reviewsubjects = []
+            for review in soup.findAll('div', id=lambda x: x and x.startswith('customer_review-')):
+                Reviewsubjects.append(review.find(class_='a-size-base').string)
+                insReviewModel.ProductUrl = itemUrl
+                insReviewModel.Reviewsubject = review.find(class_='a-size-base').string
+            print(insReviewModel)
+            writeReviewDataToCsv(resultFileName,insReviewModel)
+            # Reviewstarcount  = soup.find(id="priceblock_ourprice").string
+            # Reviewsubject
+            # Review content
+            # Reviewword count
+            # Review date
+            # Attached image count
+            # Howmanypeoplehavefoundreviewuseful
+            # UsefulnessScore
 
-    return render(request, 'name.html', {'form': form})
-
+def writeReviewDataToCsv(_resultFileName,_ReviewModel):
+    with open(_resultFileName, 'w+', newline='') as csvfile:
+        csvwriter = csv.writer(csvfile, delimiter=',',
+                                quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        csvwriter.writerow([_ReviewModel.ProductUrl,_ReviewModel.Reviewsubject])
