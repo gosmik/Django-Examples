@@ -13,4 +13,13 @@ class ReviewModel:
         self.UsefulnessScore = 0
 
     def __str__(self):
-        return "member of Test"
+        return self.ProductUrl+\
+               ","+str(self.Reviewstarcount)+ \
+               ","+self.Reviewsubject+ \
+               ","+self.Reviewcontent+ \
+               ","+str(self.Reviewwordcount)+ \
+               ","+self.Reviewdate+self.Reviewdate+ \
+               ","+str(self.Attachedimagecount)+ \
+               ","+str(self.Howmanypeoplehavefoundreviewuseful)+ \
+               ","+str(self.UsefulnessScore)
+

@@ -2,42 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0cccfc6b-42ad-4487-b91f-5f426f4362c5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fileup/DataModel.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/deneme1.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dest.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dfsdsfd.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/images/2014-04-24_15.39.57.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/images/asinnumbers_mpGokUy.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/images/ml-100k.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/name.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/polls/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/polls/admin.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/polls/apps.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/polls/migrations/0001_initial.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/polls/migrations/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/polls/models.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/polls/templates/polls/detail.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/polls/templates/polls/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/polls/templates/polls/results.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/polls/tests.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/polls/urls.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/polls/views.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploader/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploader/admin.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploader/apps.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploader/migrations/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploader/models.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploader/tests.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploader/views.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fileup/forms.py" afterPath="$PROJECT_DIR$/fileup/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fileup/models.py" afterPath="$PROJECT_DIR$/fileup/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fileup/DataModel.py" afterPath="$PROJECT_DIR$/fileup/DataModel.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fileup/views.py" afterPath="$PROJECT_DIR$/fileup/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/media/images/asinnumbers.csv" afterPath="$PROJECT_DIR$/media/images/asinnumbers.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project1/settings.py" afterPath="$PROJECT_DIR$/project1/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project1/urls.py" afterPath="$PROJECT_DIR$/project1/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/uploader/migrations/0001_initial.py" afterPath="$PROJECT_DIR$/uploader/migrations/0001_initial.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -59,8 +26,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fileup/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+            <state relative-caret-position="244">
+              <caret line="47" column="58" selection-start-line="47" selection-start-column="58" selection-end-line="47" selection-end-column="58" />
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
               </folding>
@@ -71,8 +38,8 @@
       <file leaf-file-name="DataModel.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fileup/DataModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="26" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="26" />
+            <state relative-caret-position="391">
+              <caret line="23" column="44" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -554,7 +521,7 @@
     <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24968314" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15272497" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -621,7 +588,7 @@
         <state relative-caret-position="408">
           <caret line="29" column="63" selection-start-line="29" selection-start-column="53" selection-end-line="29" selection-end-column="63" />
           <folding>
-            <element signature="e#642#682#0" expanded="true" />
+            <element signature="e#642#682#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -728,7 +695,7 @@
         <state relative-caret-position="85">
           <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
           <folding>
-            <element signature="e#24#63#0" expanded="true" />
+            <element signature="e#24#63#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -738,7 +705,7 @@
         <state relative-caret-position="357">
           <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding>
-            <element signature="e#642#682#0" expanded="true" />
+            <element signature="e#642#682#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -773,16 +740,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fileup/DataModel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="26" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="26" />
+        <state relative-caret-position="391">
+          <caret line="23" column="44" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fileup/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+        <state relative-caret-position="244">
+          <caret line="47" column="58" selection-start-line="47" selection-start-column="58" selection-end-line="47" selection-end-column="58" />
           <folding>
             <element signature="e#0#44#0" expanded="true" />
           </folding>
