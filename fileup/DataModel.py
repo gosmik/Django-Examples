@@ -9,8 +9,9 @@ class ReviewModel:
         self.Reviewwordcount = 0
         self.Reviewdate =""
         self.Attachedimagecount =0
-        self.Howmanypeoplehavefoundreviewuseful = 0
+        self.HowManyLikedReview = 0
         self.UsefulnessScore = 0
+        #print("ReviewModel init worked")
 
     def __str__(self):
         return self.ProductUrl+\
@@ -20,6 +21,6 @@ class ReviewModel:
                ","+str(self.Reviewwordcount)+ \
                ","+self.Reviewdate+self.Reviewdate+ \
                ","+str(self.Attachedimagecount)+ \
-               ","+str(self.Howmanypeoplehavefoundreviewuseful)+ \
+               ","+str(self.HowManyLikedReview) + \
                ","+str(self.UsefulnessScore)
 

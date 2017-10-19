@@ -38,21 +38,27 @@ def handle_uploaded_file(datafile,filename):
             c = result.content
             soup = BeautifulSoup(c, "html.parser")
             # TO-DO Here there will be html or null check
-            price = soup.find(id="priceblock_ourprice").string
+            if soup.find(id="priceblock_ourprice") is not None:
+                price = soup.find(id="priceblock_ourprice").string
+
             ProductUrl = itemUrl
 
-            insReviewModel = ReviewModel()
-
             for review in soup.findAll('div', id=lambda x: x and x.startswith('customer_review-')):
+                insReviewModel = ReviewModel()
                 insReviewModel.ProductUrl = itemUrl
                 insReviewModel.Reviewstarcount = float(review.find(class_='a-icon-alt').string.split()[0])
                 insReviewModel.Reviewsubject = review.find(class_='a-size-base').string
                 insReviewModel.Reviewcontent =review.find(class_='a-expander-content').string
+                insReviewModel.Reviewwordcount = len(str(insReviewModel.Reviewcontent).split())
                 insReviewModel.Reviewdate = review.find(class_='review-date').string
+                for attached in review.findAll('div', id=lambda x: x and x.startswith('video-block-')):
+                    insReviewModel.Attachedimagecount +=1
+                for attached in review.findAll('img', class_='review-image-tile'):
+                    insReviewModel.Attachedimagecount += 1
+                insReviewModel.HowManyLikedReview = int(review.find(class_='review-votes').string.split()[0])
 
-                print("review: " + str(review))
-                print("Reviewcontent: "+str(insReviewModel.Reviewcontent))
-                count = len(str(insReviewModel.Reviewcontent).split())
+
+
                 writeReviewDataToCsv(resultFileName,insReviewModel)
             # ProductUrl
             # Reviewstarcount  = soup.find(id="priceblock_ourprice").string
@@ -61,10 +67,17 @@ def handle_uploaded_file(datafile,filename):
             # Reviewword count
             # Review date
             # Attached image count
-            # Howmanypeoplehavefoundreviewuseful
+            # HowManyLikedReview
             # UsefulnessScore
 
 def writeReviewDataToCsv(_resultFileName,_ReviewModel):
     with open(_resultFileName, 'a', newline='') as csvfile:
         csvwriter = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_MINIMAL)
-        csvwriter.writerow([_ReviewModel.ProductUrl,_ReviewModel.Reviewsubject,_ReviewModel.Reviewstarcount,_ReviewModel.Reviewcontent,_ReviewModel.Reviewwordcount])
+        csvwriter.writerow([_ReviewModel.ProductUrl,
+                            _ReviewModel.Reviewstarcount,
+                            _ReviewModel.Reviewsubject,
+                            _ReviewModel.Reviewcontent,
+                            _ReviewModel.Reviewwordcount,
+                            _ReviewModel.Reviewdate,
+                            _ReviewModel.Attachedimagecount,
+                            _ReviewModel.HowManyLikedReview])
