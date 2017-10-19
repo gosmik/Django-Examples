@@ -43,16 +43,18 @@ def handle_uploaded_file(datafile,filename):
 
             insReviewModel = ReviewModel()
 
-            Reviewsubjects = []
             for review in soup.findAll('div', id=lambda x: x and x.startswith('customer_review-')):
-                Reviewsubjects.append(review.find(class_='a-size-base').string)
                 insReviewModel.ProductUrl = itemUrl
-                insReviewModel.Reviewsubject = review.find(class_='a-size-base').string
                 insReviewModel.Reviewstarcount = float(review.find(class_='a-icon-alt').string.split()[0])
+                insReviewModel.Reviewsubject = review.find(class_='a-size-base').string
                 insReviewModel.Reviewcontent =review.find(class_='a-expander-content').string
-                print(insReviewModel.Reviewcontent)
+                insReviewModel.Reviewdate = review.find(class_='review-date').string
+
+                print("review: " + str(review))
+                print("Reviewcontent: "+str(insReviewModel.Reviewcontent))
                 count = len(str(insReviewModel.Reviewcontent).split())
                 writeReviewDataToCsv(resultFileName,insReviewModel)
+            # ProductUrl
             # Reviewstarcount  = soup.find(id="priceblock_ourprice").string
             # Reviewsubject
             # Review content
@@ -65,4 +67,4 @@ def handle_uploaded_file(datafile,filename):
 def writeReviewDataToCsv(_resultFileName,_ReviewModel):
     with open(_resultFileName, 'a', newline='') as csvfile:
         csvwriter = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_MINIMAL)
-        csvwriter.writerow([_ReviewModel.ProductUrl,_ReviewModel.Reviewsubject,_ReviewModel.Reviewstarcount,_ReviewModel.Reviewcontent])
+        csvwriter.writerow([_ReviewModel.ProductUrl,_ReviewModel.Reviewsubject,_ReviewModel.Reviewstarcount,_ReviewModel.Reviewcontent,_ReviewModel.Reviewwordcount])
