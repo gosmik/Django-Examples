@@ -7,7 +7,9 @@ from .forms import UploadFileForm
 import csv
 import requests
 from bs4 import BeautifulSoup
-import array
+from datetime import datetime
+# import os
+# import os.path
 
 def upload_file(request):
     if request.method == 'POST':
@@ -22,6 +24,7 @@ def upload_file(request):
 
 def handle_uploaded_file(datafile,filename):
     resultFileName = "result"+filename
+    cleanFileName = "clean"+filename
 
     with open(filename,'wb') as destination:
         for chunk in datafile.chunks():
@@ -48,18 +51,21 @@ def handle_uploaded_file(datafile,filename):
                 insReviewModel.ProductUrl = itemUrl
                 insReviewModel.Reviewstarcount = float(review.find(class_='a-icon-alt').string.split()[0])
                 insReviewModel.Reviewsubject = review.find(class_='a-size-base').string
-                insReviewModel.Reviewcontent =review.find(class_='a-expander-content').string
+                if review.find(class_='a-expander-content') is not None:
+                    insReviewModel.Reviewcontent = review.find(class_='a-expander-content').string
                 insReviewModel.Reviewwordcount = len(str(insReviewModel.Reviewcontent).split())
-                insReviewModel.Reviewdate = review.find(class_='review-date').string
+                insReviewModel.Reviewdate = (review.find(class_='review-date').string)
                 for attached in review.findAll('div', id=lambda x: x and x.startswith('video-block-')):
                     insReviewModel.Attachedimagecount +=1
                 for attached in review.findAll('img', class_='review-image-tile'):
                     insReviewModel.Attachedimagecount += 1
-                insReviewModel.HowManyLikedReview = int(review.find(class_='review-votes').string.split()[0])
-
-
+                if review.find(class_='review-votes') is not None:
+                    insReviewModel.HowManyLikedReview = int(review.find(class_='review-votes').string.split()[0])
 
                 writeReviewDataToCsv(resultFileName,insReviewModel)
+                writeCleanDataToCsv(cleanFileName,insReviewModel)
+                # analyze.someFunc()
+
             # ProductUrl
             # Reviewstarcount  = soup.find(id="priceblock_ourprice").string
             # Reviewsubject
@@ -80,4 +86,17 @@ def writeReviewDataToCsv(_resultFileName,_ReviewModel):
                             _ReviewModel.Reviewwordcount,
                             _ReviewModel.Reviewdate,
                             _ReviewModel.Attachedimagecount,
-                            _ReviewModel.HowManyLikedReview])
+                            _ReviewModel.HowManyLikedReview,
+                            ])
+def writeCleanDataToCsv(_resultFileName,_ReviewModel):
+    with open(_resultFileName, 'a', newline='') as csvfile:
+        csvwriter = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_MINIMAL)
+        td = datetime.today() - datetime.strptime(_ReviewModel.Reviewdate, 'on %B %d, %Y')
+
+        csvwriter.writerow([int(_ReviewModel.Reviewstarcount),
+                            len(_ReviewModel.Reviewsubject.split()),
+                            _ReviewModel.Reviewwordcount,
+                            td.days,
+                            _ReviewModel.Attachedimagecount,
+                            _ReviewModel.HowManyLikedReview,
+                            ])
