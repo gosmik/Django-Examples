@@ -18,10 +18,8 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from fileup import views
-from uploader import views as uploader_views
 
 urlpatterns = [
     url(r'^fileup/', views.upload_file,name='fileupload'),
-    url(r'^upload/$', uploader_views.home, name='imageupload'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

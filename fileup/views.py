@@ -60,21 +60,20 @@ def handle_uploaded_file(datafile,filename):
                 for attached in review.findAll('img', class_='review-image-tile'):
                     insReviewModel.Attachedimagecount += 1
                 if review.find(class_='review-votes') is not None:
-                    insReviewModel.HowManyLikedReview = int(review.find(class_='review-votes').string.split()[0])
+
+                    #There is exception which is for 'One people found this helpfull', othervise it always start with number
+                    try:
+                        print('try: '+review.find(class_='review-votes').string +insReviewModel.ProductUrl)
+                        insReviewModel.LikedCount = int(review.find(class_='review-votes').string.split()[0].replace(',', ''))
+                        print('try2: '+str(insReviewModel.LikedCount))
+                    except:  # catch *all* exceptions
+                        insReviewModel.LikedCount =1
+                        print('except '+str(insReviewModel.LikedCount))
 
                 writeReviewDataToCsv(resultFileName,insReviewModel)
                 writeCleanDataToCsv(cleanFileName,insReviewModel)
                 # analyze.someFunc()
 
-            # ProductUrl
-            # Reviewstarcount  = soup.find(id="priceblock_ourprice").string
-            # Reviewsubject
-            # Review content
-            # Reviewword count
-            # Review date
-            # Attached image count
-            # HowManyLikedReview
-            # UsefulnessScore
 
 def writeReviewDataToCsv(_resultFileName,_ReviewModel):
     with open(_resultFileName, 'a', newline='') as csvfile:
@@ -86,7 +85,7 @@ def writeReviewDataToCsv(_resultFileName,_ReviewModel):
                             _ReviewModel.Reviewwordcount,
                             _ReviewModel.Reviewdate,
                             _ReviewModel.Attachedimagecount,
-                            _ReviewModel.HowManyLikedReview,
+                            _ReviewModel.LikedCount,
                             ])
 def writeCleanDataToCsv(_resultFileName,_ReviewModel):
     with open(_resultFileName, 'a', newline='') as csvfile:
@@ -98,5 +97,5 @@ def writeCleanDataToCsv(_resultFileName,_ReviewModel):
                             _ReviewModel.Reviewwordcount,
                             td.days,
                             _ReviewModel.Attachedimagecount,
-                            _ReviewModel.HowManyLikedReview,
+                            _ReviewModel.LikedCount,
                             ])

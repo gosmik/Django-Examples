@@ -9,7 +9,7 @@ class ReviewModel:
         self.Reviewwordcount = 0
         self.Reviewdate =""
         self.Attachedimagecount =0
-        self.HowManyLikedReview = 0
+        self.LikedCount = 0
         self.UsefulnessScore = 0
         #print("ReviewModel init worked")
 
@@ -21,6 +21,6 @@ class ReviewModel:
                ","+str(self.Reviewwordcount)+ \
                ","+self.Reviewdate+self.Reviewdate+ \
                ","+str(self.Attachedimagecount)+ \
-               ","+str(self.HowManyLikedReview) + \
+               ","+str(self.LikedCount) + \
                ","+str(self.UsefulnessScore)
 
